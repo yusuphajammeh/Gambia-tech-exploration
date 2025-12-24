@@ -1,0 +1,31 @@
+# --- System Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDE/Editor Files ---
+.vscode/
+.idea/
+*.swp
+*.log
+
+# --- Programming Language Junk ---
+# Python
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# C++/C
+*.exe
+*.o
+*.out
+
+# --- Sensitive Info (NEVER upload these!) ---
+.env
+config.json
+#--- AI Project Tricking files ---
+AI--Log.txt
+AI--README.mdt
