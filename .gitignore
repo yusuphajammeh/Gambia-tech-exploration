@@ -34,3 +34,4 @@ config.json
 #                   ==========================================                          #
 AI--Log.txt
 AI--README.md
+.env
