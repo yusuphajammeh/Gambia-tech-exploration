@@ -26,6 +26,11 @@ npm-debug.log*
 # --- Sensitive Info (NEVER upload these!) ---
 .env
 config.json
-#--- AI Project Tricking files ---
+
+
+#                   ==========================================                          #
+# --- AI Project Context & Session Logs --- These files are used for AI brainstorming.
+# They stay on this laptop and are NOT uploaded to GitHub to keep the repo clean.
+#                   ==========================================                          #
 AI--Log.txt
 AI--README.md
