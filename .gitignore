@@ -35,3 +35,6 @@ config.json
 AI--Log.txt
 AI--README.md
 .env
+YJ_Logger.py
+Tempe tools
+test_env.py
