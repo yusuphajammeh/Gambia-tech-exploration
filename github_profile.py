@@ -1,30 +1,38 @@
 import requests
 import os
 from dotenv import load_dotenv
+from YJ_Logger import log_event # Using your professional logger!
 
-# Load your secret token from the .env file
 load_dotenv()
-token = os.getenv("GITHUB_TOKEN")
+TOKEN = os.getenv('GITHUB_TOKEN')
+headers = {'Authorization': f'token {TOKEN}'}
 
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Accept": "application/vnd.github+json"
-}
-
-def get_github_profile():
+def fetch_advanced_stats():
     url = "https://api.github.com/user"
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
         data = response.json()
-        print(f"Successfully connected as: {data['name']}")
-        print(f"School/Company: {data['company']}")
         
-        # Save this to your AI Log for context
-        with open("AI--Log.txt", "a") as log:
-            log.write(f"\n[API Sync] Verified Profile: {data['name']} at {data['company']} on 2025-12-25\n")
+        # Extracting the specific stats for your new HTML cards
+        stats = {
+            "name": data.get('name', 'User'),
+            "repos": data.get('public_repos', 0),
+            "followers": data.get('followers', 0),
+            "created": data.get('created_at', '')[:10] # Gets just the YYYY-MM-DD
+        }
+        
+        print(f"📊 Stats Fetched for {stats['name']}:")
+        print(f" - Repos: {stats['repos']}")
+        print(f" - Followers: {stats['followers']}")
+        print(f" - Member Since: {stats['created']}")
+        
+        # Log the success automatically
+        log_event(f"Fetched Advanced Stats: {stats['repos']} repos, {stats['followers']} followers.")
+        return stats
     else:
-        print(f"Failed! Error code: {response.status_code}")
+        log_event(f"Error fetching stats: {response.status_code}")
+        return None
 
 if __name__ == "__main__":
-    get_github_profile()
+    fetch_advanced_stats()

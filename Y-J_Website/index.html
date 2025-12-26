@@ -1,73 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusupha Jammeh - Portfolio</title>
+    <title>Yusupha Jammeh | Developer & Designer</title>
+    <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <div class="nav-container">
-                <h1>Yusupha Jammeh</h1>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">YJ.</a>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#projects">Work</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </div>
-        </nav>
-    </header>
-
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h2>Welcome to My Portfolio</h2>
-            <p>Exploring Technology in Gambia</p>
-            <a href="#about" class="btn">Learn More</a>
         </div>
-    </section>
+    </nav>
 
-    <section id="about">
+    <!-- Hero Section -->
+    <section id="hero">
         <div class="container">
-            <h2>About Me</h2>
-            <p>Hi, I'm Yusupha Jammeh, a student developer at Kotu Senior Secondary School. I'm passionate about technology and exploring how it can impact communities in Gambia.</p>
-            <p>Currently working on projects related to web development and tech education.</p>
+            <div class="hero-content">
+                <span class="hero-subtitle">Welcome to my portfolio</span>
+                <h1>Building digital <br> <span class="gradient-text">Masterpieces</span></h1>
+                <p class="hero-description">
+                    I am Yusupha Jammeh. A passionate developer crafting premium digital experiences with clean code and
+                    stunning design.
+                </p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2>My Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Gambia Tech Exploration</h3>
-                    <p>A repository documenting my journey in technology and development.</p>
-                    <a href="https://github.com/YusuphaJammeh/Gambia-tech-exploration" target="_blank">View on GitHub</a>
+            <h2>Selected Works</h2>
+            <div class="section-grid">
+
+                <!-- Project 1 -->
+                <div class="glass-panel project-card">
+                    <h3>Profoliu Website</h3>
+                    <p class="project-tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Design</span>
+                    </p>
+                    <p>My personal premium portfolio website showcasing my journey and skills.</p>
                 </div>
-                <!-- Add more projects as needed -->
+
+                <!-- Project 2 (Placeholder) -->
+                <div class="glass-panel project-card">
+                    <h3>E-Commerce Dashboard</h3>
+                    <p class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                    </p>
+                    <p>A modern dashboard for managing digital stores with real-time analytics.</p>
+                </div>
+
+                <!-- Project 3 (Placeholder) -->
+                <div class="glass-panel project-card">
+                    <h3>AI Image Gen</h3>
+                    <p class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">AI</span>
+                    </p>
+                    <p>An experimental AI tool creating automated artistic assets.</p>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <!-- About Section -->
+    <section id="about">
         <div class="container">
-            <h2>Contact Me</h2>
-            <p>Feel free to reach out for collaborations or questions.</p>
-            <form id="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
+            <div class="glass-panel" style="padding: 60px;">
+                <span class="hero-subtitle">About Me</span>
+                <h2>Behind the Code</h2>
+                <p style="max-width: 700px; color: var(--text-muted); margin-bottom: 30px;">
+                    I specialize in building high-quality websites and applications that focus on performance,
+                    accessibility, and user experience.
+                    I believe that great design is not just about how it looks, but how it works.
+                </p>
+                <a href="#contact" class="btn">Let's Talk</a>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Yusupha Jammeh. All rights reserved.</p>
+    <section id="github-stats" class="stats-section">
+        <h2><i class="fab fa-github"></i> Live GitHub Insights</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Public Repositories</span>
+                <span id="repo-count" class="stat-value">Loading...</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Followers</span>
+                <span id="follower-count" class="stat-value">Loading...</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Account Created</span>
+                <span id="account-age" class="stat-value">Loading...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h2>Let's build something <br> <span class="gradient-text">amazing together.</span></h2>
+
+            <div class="social-links" style="margin-top: 50px;">
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:hello@example.com" class="social-icon"><i class="fas fa-envelope"></i></a>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.8rem;">
+                &copy; 2025 Yusupha Jammeh. All Rights Reserved.
+            </p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
