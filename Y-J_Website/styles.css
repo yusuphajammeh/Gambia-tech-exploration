@@ -487,3 +487,11 @@ footer {
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.sync-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.8;
+}

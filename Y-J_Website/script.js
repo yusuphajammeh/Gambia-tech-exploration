@@ -54,34 +54,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. GitHub Stats Fetcher
-    const username = 'YusuphaJammeh'; // Replace with your actual GitHub username
+    // 4. GitHub Stats Fetcher (Synchronized with Python Bridge)
     const repoCountEl = document.getElementById('repo-count');
     const followerCountEl = document.getElementById('follower-count');
     const accountAgeEl = document.getElementById('account-age');
+    const updateTimeEl = document.getElementById('update-time'); // Get the time element
 
-    // Only run if elements exist
     if (repoCountEl && followerCountEl && accountAgeEl) {
-        fetch(`https://api.github.com/users/${username}`)
+        fetch('data.json?v=' + new Date().getTime())
             .then(response => {
-                if (!response.ok) throw new Error('User not found');
+                if (!response.ok) throw new Error('data.json not ready');
                 return response.json();
             })
             .then(data => {
-                // Update DOM
-                repoCountEl.textContent = data.public_repos;
+                // ALL updates happen here inside ONE block
+                repoCountEl.textContent = data.repos;
                 followerCountEl.textContent = data.followers;
+                accountAgeEl.textContent = data.created;
 
-                // Calculate Account Age (Years)
-                const createdYear = new Date(data.created_at).getFullYear();
-                const currentYear = new Date().getFullYear();
-                accountAgeEl.textContent = `${currentYear - createdYear} Years`;
+                // This is the line that was missing the connection!
+                if (updateTimeEl) {
+                    updateTimeEl.textContent = data.last_updated;
+                }
+
+                console.log("✅ Dashboard fully synced including time:", data.last_updated);
             })
             .catch(error => {
-                console.error('Error fetching GitHub stats:', error);
-                repoCountEl.textContent = '-';
-                followerCountEl.textContent = '-';
-                accountAgeEl.textContent = '-';
+                console.warn('Waiting for Python data.json...', error);
+                repoCountEl.textContent = '...';
+                followerCountEl.textContent = '...';
+                accountAgeEl.textContent = '...';
+                if (updateTimeEl) updateTimeEl.textContent = '...';
             });
     }
 

@@ -1,5 +1,7 @@
 import requests
 import os
+import datetime # 1. Make sure this is at the VERY top of the file
+import json # Add this at the top of your file
 from dotenv import load_dotenv
 from YJ_Logger import log_event # Using your professional logger!
 
@@ -14,20 +16,36 @@ def fetch_advanced_stats():
     if response.status_code == 200:
         data = response.json()
         
-        # Extracting the specific stats for your new HTML cards
+        # Combined into one clean dictionary
+        # Get the current year
+        current_year = datetime.datetime.now().year
+        # Get the year the account was created (first 4 characters of '2024-09-22')
+        created_year = int(data.get('created_at', str(current_year))[:4])
+        
+        # Calculate the difference
+        years_ago = current_year - created_year
+        
+        # Create a friendly string (e.g., "1 Year Ago" or "Joined this year")
+        if years_ago == 0:
+            age_display = "Joined this year"
+        elif years_ago == 1:
+            age_display = "1 Year Ago"
+        else:
+            age_display = f"{years_ago} Years Ago"
+
         stats = {
             "name": data.get('name', 'User'),
             "repos": data.get('public_repos', 0),
             "followers": data.get('followers', 0),
-            "created": data.get('created_at', '')[:10] # Gets just the YYYY-MM-DD
+            "created": age_display, # Now sends "1 Year Ago" instead of a date
+            "last_updated": datetime.datetime.now().strftime("%b %d, %H:%M")
         }
-        
+
         print(f"📊 Stats Fetched for {stats['name']}:")
         print(f" - Repos: {stats['repos']}")
         print(f" - Followers: {stats['followers']}")
         print(f" - Member Since: {stats['created']}")
         
-        # Log the success automatically
         log_event(f"Fetched Advanced Stats: {stats['repos']} repos, {stats['followers']} followers.")
         return stats
     else:
@@ -35,4 +53,10 @@ def fetch_advanced_stats():
         return None
 
 if __name__ == "__main__":
-    fetch_advanced_stats()
+    stats = fetch_advanced_stats()
+    if stats:
+        # Save the data to a JSON file that the website can read
+        # If your folder is named 'website'
+        with open('Y-J_website/data.json', 'w') as f:
+            json.dump(stats, f)
+        print("🚀 Data bridged! stats.json has been updated.")
