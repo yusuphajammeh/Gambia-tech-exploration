@@ -1,4 +1,5 @@
 import requests
+import time
 import os
 import datetime # 1. Make sure this is at the VERY top of the file
 import json # Add this at the top of your file
@@ -53,10 +54,16 @@ def fetch_advanced_stats():
         return None
 
 if __name__ == "__main__":
-    stats = fetch_advanced_stats()
-    if stats:
-        # Save the data to a JSON file that the website can read
-        # If your folder is named 'website'
-        with open('Y-J_website/data.json', 'w') as f:
-            json.dump(stats, f)
-        print("🚀 Data bridged! stats.json has been updated.")
+    print("🚀 GitHub Bridge is now active and monitoring...")
+    
+    while True:
+        stats = fetch_advanced_stats()
+        if stats:
+            # Save the data to the JSON file
+            with open('Y-J_website/data.json', 'w') as f:
+                json.dump(stats, f)
+            
+            print(f"✅ Sync Complete at {stats['last_updated']}. Sleeping for 1 hour...")
+        
+        # This tells the script to wait 3600 seconds (1 hour) before running again
+        time.sleep(3600)
