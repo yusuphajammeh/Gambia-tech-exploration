@@ -117,6 +117,7 @@ img {
 .gradient-text {
     background: linear-gradient(135deg, var(--text-main), var(--accent-primary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -161,7 +162,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 0;
+    padding: 10px 0;
     z-index: 1000;
     transition: var(--transition-fast);
 }
@@ -178,10 +179,61 @@ nav.scrolled {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    font-family: var(--font-heading);
-    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 5px;
+}
+
+/* Background Glow */
+.logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    z-index: -1;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(5px);
+}
+
+/* Optional Orbit Ring */
+.logo::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.logo img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+    /* Invert to make the black logo white on dark background and add glow */
+    filter: invert(1) brightness(100%) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+    position: relative;
+    z-index: 2;
 }
 
 .nav-links {
@@ -432,5 +484,6 @@ footer {
     font-family: var(--font-heading);
     background: linear-gradient(135deg, #fff, var(--accent-secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
