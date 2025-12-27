@@ -49,6 +49,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -59,6 +60,7 @@ body {
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
 }
 
 h1,
@@ -172,7 +174,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 10px 0;
+    padding: 5px 0;
     z-index: 1000;
     transition: var(--transition-fast);
 }
@@ -426,12 +428,58 @@ footer {
    9. MOBILE RESPONSIVE
    ========================================= */
 @media (max-width: 768px) {
+    :root {
+        --section-spacing: 60px;
+        /* Reduced for mobile */
+    }
+
     h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        /* Scaled down for mobile */
     }
 
     h2 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+
+    .hero-section {
+        padding: 80px 5%;
+        /* More vertical breathing room */
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .cta-buttons {
+        display: flex;
+        /* Missing in previous implementation */
+        flex-direction: column;
+        /* Stack buttons vertically */
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 30px auto 0;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .stats-container {
+        margin-top: -30px;
+    }
+
+    .stats-grid {
+        display: grid !important;
+        /* Force grid behavior */
+        grid-template-columns: 1fr !important;
+        /* Single column for clarity */
+        gap: 15px;
     }
 
     .nav-links {
@@ -458,6 +506,59 @@ footer {
         font-size: 1.5rem;
         cursor: pointer;
         color: var(--text-main);
+    }
+
+    /* Footer Mobile Fixes */
+    .footer-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        /* Stack columns */
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-status {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a {
+        margin: 5px 0;
+    }
+
+    /* Stacking Grids */
+    .about-grid,
+    .project-featured {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    .project-featured {
+        padding: 20px;
+    }
+
+    .win-terminal {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .hero-meta {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
     }
 }
 
