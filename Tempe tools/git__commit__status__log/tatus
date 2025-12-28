@@ -1,0 +1,59 @@
+[33mcommit c73476518995b6811aa994631f439529e4d349fd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Thu Dec 25 02:52:15 2025 +0000
+
+    Update website and add repo tracker
+
+[33mcommit c0a97e9223c2f3754912e139516a9e9cce005579[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Thu Dec 25 01:51:44 2025 +0000
+
+    Added API script (token kept safe in .env)
+
+[33mcommit 861ecb729c664456792c8ec03d1e10234db1d5b9[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Thu Dec 25 00:08:58 2025 +0000
+
+    Added a gitignore to keep the repo clean
+
+[33mcommit a771cee09ce342f3ecbd448b8de207f230d67e80[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 23:59:07 2025 +0000
+
+    Fix: apply .gitignore and stop tracking ignored files
+
+[33mcommit e5501c061bfcc333a15fd06f06d4c45e56fc031f[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 23:50:21 2025 +0000
+
+    Fix: apply .gitignore and stop tracking ignored files
+
+[33mcommit 862c5cbb2e68def2171df7116fc6cb92982ff23f[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 23:36:26 2025 +0000
+
+    Added README.md
+
+[33mcommit cd717b94ab8ea2a7eb6ceb1b7add6bfed52ef220[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 23:34:09 2025 +0000
+
+    Added a gitignore to keep the repo clean
+
+[33mcommit 913eb4fe1f5a1c70a0902542fc579499c75556bc[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 23:29:05 2025 +0000
+
+    seteup
+
+[33mcommit 08517bac30ebfa172abaf8f4f5152e124b71f49e[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 23:22:08 2025 +0000
+
+    Added a gitignore to keep the repo clean
+
+[33mcommit 775e8b561749ea2faeb58af0338ae303e6b6fee1[m
+Author: Yusupha Jammeh <yusuphajammeh13122003@outlook.com>
+Date:   Wed Dec 24 22:57:39 2025 +0000
+
+    satop
