@@ -1,0 +1,38 @@
+name: YJ-Heartbeat-Sync
+
+on:
+  schedule:
+    # This tells the robot to run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch: # This allows you to run it manually for testing
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/checkout@v3
+      with:
+        python-version: '3.10'
+
+    - name: Install Dependencies
+      run: pip install requests
+
+    - name: Run Profile Update Script
+      # This runs the script you built earlier
+      run: python github_profile.py
+      env:
+        # We will set this "Secret" in the next step
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name "Yusupha-Bot"
+        git config --global user.email "bot@yusupha.me"
+        git add data.json
+        git commit -m "Automated Heartbeat Update [Cloud]" || exit 0
+        git push
