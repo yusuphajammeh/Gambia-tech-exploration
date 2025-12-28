@@ -99,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (typingText) {
-        typingText.style.borderRight = "2px solid var(--accent-primary)";
         typeLine();
     }
 

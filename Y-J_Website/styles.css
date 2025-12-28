@@ -578,9 +578,15 @@ footer {
 
 /* Typing Animation */
 .typing-text {
-    border-right: 2px solid var(--accent-primary);
-    white-space: nowrap;
-    /* Prevents text from wrapping to new line */
+    display: inline-block;
+    min-height: 1.2em;
+    /* Prevents height collapse */
+    border-right: 3px solid var(--accent-primary);
+    padding-right: 4px;
+    /* Space for the cursor */
+    white-space: pre-wrap;
+    /* Allows wrapping if needed while preserving spaces */
+    animation: blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
