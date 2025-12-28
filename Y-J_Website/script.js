@@ -1,42 +1,153 @@
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth'
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Navigation Scroll Effect
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
             });
-        }
+        });
+    }
+
+    // 2. Intersection Observer for Scroll Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Target elements to animate
+    const sections = document.querySelectorAll('section');
+    const cards = document.querySelectorAll('.project-card');
+    const heroContent = document.querySelector('.hero-content');
+
+    // Add initial hidden class and observe
+    [...sections, ...cards].forEach(el => {
+        el.classList.add('fade-in-up');
+        observer.observe(el);
     });
-});
 
-// Contact form submission (placeholder - logs to console)
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    console.log('Form submitted with data:', Object.fromEntries(formData));
-    alert('Thank you for your message! (This is a demo - no email sent)');
-    this.reset();
-});
+    if (heroContent) {
+        heroContent.classList.add('fade-in-up', 'visible');
+    }
 
-// Add some basic animation on scroll
-const observerOptions = {
-    threshold: 0.1
-};
+    // 2.5 Multi-string Typing Effect
+    const typingText = document.querySelector('.typing-text');
+    const roles = ["Full-Stack Tech Explorer", "AI Automation Developer", "Software Enthusiast"];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+    function typeLine() {
+        const currentRole = roles[roleIndex];
+
+        if (isDeleting) {
+            typingText.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            typingText.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100;
         }
-    });
-}, observerOptions);
 
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s, transform 0.6s';
-    observer.observe(section);
+        if (!isDeleting && charIndex === currentRole.length) {
+            isDeleting = true;
+            typeSpeed = 2000; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(typeLine, typeSpeed);
+    }
+
+    if (typingText) {
+        typingText.style.borderRight = "2px solid var(--accent-primary)";
+        typeLine();
+    }
+
+    // 3. Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 4. GitHub Stats Fetcher (Synchronized with Python Bridge)
+    const repoCountEl = document.getElementById('repo-count');
+    const followerCountEl = document.getElementById('follower-count');
+    const accountAgeEl = document.getElementById('account-age');
+    const updateTimeEl = document.getElementById('update-time'); // Get the time element
+
+    if (repoCountEl && followerCountEl && accountAgeEl) {
+        fetch('data.json?v=' + new Date().getTime())
+            .then(response => {
+                if (!response.ok) throw new Error('data.json not ready');
+                return response.json();
+            })
+            .then(data => {
+                // ALL updates happen here inside ONE block
+                repoCountEl.textContent = data.repos;
+                followerCountEl.textContent = data.followers;
+                accountAgeEl.textContent = data.created;
+
+                // This is the line that was missing the connection!
+                if (updateTimeEl) {
+                    updateTimeEl.textContent = data.last_updated;
+                }
+
+                console.log("✅ Dashboard fully synced including time:", data.last_updated);
+            })
+            .catch(error => {
+                console.warn('Waiting for Python data.json...', error);
+                repoCountEl.textContent = '...';
+                followerCountEl.textContent = '...';
+                accountAgeEl.textContent = '...';
+                if (updateTimeEl) updateTimeEl.textContent = '...';
+            });
+    }
+
 });
