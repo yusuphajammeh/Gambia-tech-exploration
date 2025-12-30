@@ -2,13 +2,13 @@ name: YJ-Heartbeat-Sync
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour
+    - cron: '0 * * * *'
   workflow_dispatch:
-    # This tells GitHub: "Only run this code when I push to experiments--A"
   push:
     branches:
       - experiments--A
 
+# ... the rest of your code is perfect
 jobs:
   build:
     runs-on: ubuntu-latest
