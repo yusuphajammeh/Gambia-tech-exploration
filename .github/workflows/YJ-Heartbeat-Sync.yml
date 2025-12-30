@@ -1,0 +1,32 @@
+name: YJ-Heartbeat-Sync
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Update Files
+      run: python YJ_heartbeat.py
+
+    - name: Commit and Push
+      run: |
+        git config --global user.name "Yusupha Jammeh"
+        git config --global user.email "yusuphajammeh13122003@outlook.com"
+        git add heartbeat.txt data.json
+        git commit -m "Automated Website & Heartbeat Update" || exit 0
+        git push
