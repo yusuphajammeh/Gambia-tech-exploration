@@ -3,12 +3,11 @@ name: YJ-Heartbeat-Sync
 on:
   schedule:
     - cron: '0 * * * *'
-  workflow_dispatch:      # <--- This is what creates the button!
+  workflow_dispatch:
   push:
     branches:
-      - experiments--A    # <--- This must match your branch
+      - experiments--A
 
-# ... the rest of your code is perfect
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +16,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -29,14 +28,8 @@ jobs:
 
     - name: Commit and Push
       run: |
-        # We use --global here so the Cloud Robot knows its name
         git config --global user.name "Yusupha Jammeh"
         git config --global user.email "yusuphajammeh13122003@outlook.com"
-          
         git add heartbeat.txt data.json
-          
-        # This part prevents the error if no changes were made
         git commit -m "Automated Heartbeat Update" || echo "No changes to commit"
-          
-        # Explicitly push to your experiment branch
         git push origin experiments--A
