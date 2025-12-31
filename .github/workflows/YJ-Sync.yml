@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - experiments--A
+      - main
 
 jobs:
   build:
