@@ -32,4 +32,6 @@ jobs:
         git config --global user.email "yusuphajammeh13122003@outlook.com"
         git add heartbeat.txt data.json
         git commit -m "Automated Heartbeat Update" || echo "No changes to commit"
-        git push origin experiments--A
+          
+          # This is the fix for Error 128:
+        git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:experiments--A
