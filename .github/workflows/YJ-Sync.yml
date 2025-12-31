@@ -34,4 +34,4 @@ jobs:
         git commit -m "Automated Heartbeat Update" || echo "No changes to commit"
           
           # This is the fix for Error 128:
-        git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:experiments--A
+        git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main --force
