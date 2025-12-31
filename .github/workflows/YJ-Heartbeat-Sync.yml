@@ -3,10 +3,10 @@ name: YJ-Heartbeat-Sync
 on:
   schedule:
     - cron: '0 * * * *'
-  workflow_dispatch:
+  workflow_dispatch:      # <--- This is what creates the button!
   push:
     branches:
-      - experiments--A
+      - experiments--A    # <--- This must match your branch
 
 # ... the rest of your code is perfect
 jobs:
@@ -29,8 +29,14 @@ jobs:
 
     - name: Commit and Push
       run: |
-        git config --local user.name "Yusupha Jammeh"
-        git config --local user.email "yusuphajammeh13122003@outlook.com"
+        # We use --global here so the Cloud Robot knows its name
+        git config --global user.name "Yusupha Jammeh"
+        git config --global user.email "yusuphajammeh13122003@outlook.com"
+          
         git add heartbeat.txt data.json
-        git commit -m "Automated Website & Heartbeat Update" || exit 0
-        git push
+          
+        # This part prevents the error if no changes were made
+        git commit -m "Automated Heartbeat Update" || echo "No changes to commit"
+          
+        # Explicitly push to your experiment branch
+        git push origin experiments--A
