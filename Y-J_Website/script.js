@@ -116,36 +116,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. GitHub Stats Fetcher (Synchronized with Python Bridge)
+    // 4. GitHub Stats Fetcher (Reaching out of the Yj-website folder)
     const repoCountEl = document.getElementById('repo-count');
     const followerCountEl = document.getElementById('follower-count');
     const accountAgeEl = document.getElementById('account-age');
-    const updateTimeEl = document.getElementById('update-time'); // Get the time element
+    const updateTimeEl = document.getElementById('update-time');
 
     if (repoCountEl && followerCountEl && accountAgeEl) {
-        fetch('data.json?v=' + new Date().getTime())
+        // We use '../' to step OUT of Yj-website and into the Main Folder
+        fetch('../data.json?v=' + new Date().getTime())
             .then(response => {
-                if (!response.ok) throw new Error('data.json not ready');
+                if (!response.ok) throw new Error('data.json not found in main folder');
                 return response.json();
             })
             .then(data => {
-                // ALL updates happen here inside ONE block
                 repoCountEl.textContent = data.repos;
                 followerCountEl.textContent = data.followers;
                 accountAgeEl.textContent = data.created;
 
-                // This is the line that was missing the connection!
                 if (updateTimeEl) {
                     updateTimeEl.textContent = data.last_updated;
                 }
-
-                console.log("✅ Dashboard fully synced including time:", data.last_updated);
+                console.log("✅ Sync successful from Main Folder!");
             })
             .catch(error => {
-                console.warn('Waiting for Python data.json...', error);
-                repoCountEl.textContent = '...';
-                followerCountEl.textContent = '...';
-                accountAgeEl.textContent = '...';
-                if (updateTimeEl) updateTimeEl.textContent = '...';
+                console.warn('Path error: Ensure data.json is in the root.', error);
             });
     }
 
