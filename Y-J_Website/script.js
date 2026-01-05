@@ -16,8 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     if (menuBtn && navLinks) {
+        // Set ID for ARIA controls
+        navLinks.id = 'mobile-menu';
+        
         menuBtn.addEventListener('click', () => {
+            const isExpanded = navLinks.classList.contains('active');
+            
+            // Toggle menu
             navLinks.classList.toggle('active');
+            
+            // Update ARIA attributes
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
+            
+            // Toggle icon
             const icon = menuBtn.querySelector('i');
             if (navLinks.classList.contains('active')) {
                 icon.classList.replace('fa-bars', 'fa-times');
@@ -30,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                menuBtn.setAttribute('aria-expanded', 'false');
                 menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
             });
         });
