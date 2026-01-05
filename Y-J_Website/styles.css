@@ -132,6 +132,15 @@ select:focus-visible {
     outline-offset: 2px;
 }
 
+/* Remove default outline when focus-visible is supported to prevent double outlines */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+    outline: none;
+}
+
 ul {
     list-style: none;
 }
@@ -273,6 +282,10 @@ img {
 .mobile-menu-btn:focus-visible {
     outline: 3px solid var(--accent-primary);
     outline-offset: 2px;
+}
+
+.mobile-menu-btn:focus:not(:focus-visible) {
+    outline: none;
 }
 
 /* =========================================

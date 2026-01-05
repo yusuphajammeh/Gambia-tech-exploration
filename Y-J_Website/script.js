@@ -16,9 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     if (menuBtn && navLinks) {
-        // Set ID for ARIA controls
-        navLinks.id = 'mobile-menu';
-        
         // Helper function to toggle menu state
         const toggleMenu = (isOpen) => {
             if (isOpen) {
