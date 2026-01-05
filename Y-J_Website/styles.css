@@ -118,11 +118,11 @@ button:focus,
 input:focus,
 textarea:focus,
 select:focus {
-    outline: 3px solid var(--accent-primary);
+    outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
 }
 
-/* Focus visible for modern browsers */
+/* Enhanced focus for browsers with focus-visible support */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -266,6 +266,11 @@ img {
 }
 
 .mobile-menu-btn:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+.mobile-menu-btn:focus-visible {
     outline: 3px solid var(--accent-primary);
     outline-offset: 2px;
 }
@@ -1084,6 +1089,9 @@ blockquote {
     letter-spacing: 3px;
     color: var(--accent-color);
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: var(--font-body);
 }
 
 .badge-body {

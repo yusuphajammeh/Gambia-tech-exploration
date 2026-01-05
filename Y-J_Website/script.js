@@ -19,30 +19,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // Set ID for ARIA controls
         navLinks.id = 'mobile-menu';
         
-        menuBtn.addEventListener('click', () => {
-            const isExpanded = navLinks.classList.contains('active');
-            
-            // Toggle menu
-            navLinks.classList.toggle('active');
-            
-            // Update ARIA attributes
-            menuBtn.setAttribute('aria-expanded', !isExpanded);
-            
-            // Toggle icon
-            const icon = menuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
+        // Helper function to toggle menu state
+        const toggleMenu = (isOpen) => {
+            if (isOpen) {
+                navLinks.classList.add('active');
+                menuBtn.setAttribute('aria-expanded', 'true');
+                menuBtn.querySelector('i').classList.replace('fa-bars', 'fa-times');
             } else {
-                icon.classList.replace('fa-times', 'fa-bars');
+                navLinks.classList.remove('active');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
             }
+        };
+        
+        menuBtn.addEventListener('click', () => {
+            const isCurrentlyOpen = navLinks.classList.contains('active');
+            toggleMenu(!isCurrentlyOpen);
         });
 
         // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                toggleMenu(false);
             });
         });
     }
