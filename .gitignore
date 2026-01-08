@@ -33,9 +33,13 @@ config.json
 # They stay on this laptop and are NOT uploaded to GitHub to keep the repo clean.
 #                   ==========================================                          #
 AI--Log.txt
-AI--README.md
+README.md
 .env
 Tempe tools
 test_env.py
 Tempe tools/
 YJ_Logger.py
+
+
+
+
