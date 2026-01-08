@@ -1,5 +1,5 @@
 import sys
-from YJ_Engine import log_event
+from YJ_Logger import log_event
 
 if __name__ == "__main__":
     # Allows you to type: python log.py "My message"

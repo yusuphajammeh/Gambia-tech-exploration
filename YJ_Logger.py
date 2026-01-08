@@ -2,8 +2,13 @@ import os
 from datetime import datetime
 
 
+# No import of 'log_event' here! That was the cause of the error.
+
 def log_event(message, category="LOG"):
-    """The central engine for all Y-J Portfolio logging."""
+    """
+    The central engine for all Y-J Portfolio logging.
+    This file defines the design and saves it to AI--Log.txt.
+    """
     log_file = "AI--Log.txt"
     date_str = datetime.now().strftime('%Y-%m-%d %H:%M')
 
@@ -16,7 +21,7 @@ def log_event(message, category="LOG"):
     )
 
     try:
-        # Only add the header if the file is new or empty
+        # Check if we need to add the professional header
         needs_header = not os.path.exists(log_file) or os.path.getsize(log_file) == 0
 
         with open(log_file, "a", encoding="utf-8") as f:
