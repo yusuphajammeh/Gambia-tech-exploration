@@ -1,147 +1,132 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Navigation Scroll Effect
-    const navbar = document.getElementById('navbar');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // Mobile Menu Toggle
-    const menuBtn = document.querySelector('.mobile-menu-btn');
+    /* =========================================
+       1. MOBILE NAVIGATION
+       ========================================= */
+    const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const icon = mobileToggle?.querySelector('i');
 
-    if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
+    if (mobileToggle && navLinks) {
+        mobileToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+
+            // Toggle Icon
+            if (icon) {
+                icon.classList = isOpen ? 'fas fa-times' : 'fas fa-bars';
             }
         });
 
-        // Close menu when clicking a link
+        // Close when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                if (icon) icon.classList = 'fas fa-bars';
             });
         });
     }
 
-    // 2. Intersection Observer for Scroll Animations
+    /* =========================================
+       2. SCROLL ANIMATIONS (Intersection Observer)
+       ========================================= */
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        rootMargin: "0px 0px -40px 0px"
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const animateOnScroll = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                // Optional: Stop observing once visible to save resources
+                animateOnScroll.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Target elements to animate
-    const sections = document.querySelectorAll('section');
-    const cards = document.querySelectorAll('.project-card');
-    const heroContent = document.querySelector('.hero-content');
-
-    // Add initial hidden class and observe
-    [...sections, ...cards].forEach(el => {
-        el.classList.add('fade-in-up');
-        observer.observe(el);
+    // Elements to animate
+    const animatedElements = document.querySelectorAll('.fade-in-up, .glass-panel, h2, h3');
+    animatedElements.forEach(el => {
+        // Ensure they have the base class if not already
+        if (!el.classList.contains('fade-in-up')) {
+            el.classList.add('fade-in-up');
+        }
+        animateOnScroll.observe(el);
     });
 
-    if (heroContent) {
-        heroContent.classList.add('fade-in-up', 'visible');
-    }
+    /* =========================================
+       3. LIVE STATS FETCHER (DataSync)
+       ========================================= */
+    // Fetches data.json from the parent directory to simulate live stats
+    const repoCountEl = document.getElementById('repo-count');
+    const followerCountEl = document.getElementById('follower-count');
+    const accountAgeEl = document.getElementById('account-age');
+    const updateTimeEl = document.getElementById('update-time');
 
-    // 2.5 Multi-string Typing Effect
-    const typingText = document.querySelector('.typing-text');
-    const roles = ["Full-Stack Tech Explorer", "AI Automation Developer", "Software Enthusiast"];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 100;
+    async function fetchStats() {
+        try {
+            // Cache busting to ensure fresh data
+            const response = await fetch('../data.json?v=' + Date.now());
+            if (!response.ok) throw new Error('Stats file not found');
 
-    function typeLine() {
-        const currentRole = roles[roleIndex];
+            const data = await response.json();
 
-        if (isDeleting) {
-            typingText.textContent = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-            typeSpeed = 50;
-        } else {
-            typingText.textContent = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-            typeSpeed = 100;
+            // Animate Numbers Implementation
+            const animateValue = (element, start, end, duration) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    element.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        element.innerHTML = end; // Ensure final value is exact
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
+
+            if (repoCountEl && data.repos !== undefined) {
+                animateValue(repoCountEl, 0, data.repos, 1500);
+            }
+
+            if (followerCountEl && data.followers !== undefined) {
+                animateValue(followerCountEl, 0, data.followers, 1500);
+            }
+
+            if (accountAgeEl && data.created) {
+                accountAgeEl.textContent = data.created;
+            }
+
+            if (updateTimeEl && data.last_updated) {
+                updateTimeEl.textContent = `LAST SYNC: ${data.last_updated} [GMT]`;
+                updateTimeEl.style.color = 'var(--accent-cyan)';
+            }
+
+        } catch (error) {
+            console.warn('Live Sync Offline:', error);
+            if (updateTimeEl) updateTimeEl.textContent = 'Sync Offline';
         }
-
-        if (!isDeleting && charIndex === currentRole.length) {
-            isDeleting = true;
-            typeSpeed = 2000; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typeSpeed = 500;
-        }
-
-        setTimeout(typeLine, typeSpeed);
     }
 
-    if (typingText) {
-        typeLine();
-    }
+    // Initialize Stats
+    if (repoCountEl) fetchStats();
 
-    // 3. Smooth Scroll for Anchor Links
+    /* =========================================
+       4. SMOOTH SCROLLING
+       ========================================= */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
     });
-
-    // 4. GitHub Stats Fetcher (Synchronized with Python Bridge)
-    // 4. GitHub Stats Fetcher (Reaching out of the Yj-website folder)
-    const repoCountEl = document.getElementById('repo-count');
-    const followerCountEl = document.getElementById('follower-count');
-    const accountAgeEl = document.getElementById('account-age');
-    const updateTimeEl = document.getElementById('update-time');
-
-    if (repoCountEl && followerCountEl && accountAgeEl) {
-        // We use '../' to step OUT of Yj-website and into the Main Folder
-        fetch('../data.json?v=' + new Date().getTime())
-            .then(response => {
-                if (!response.ok) throw new Error('data.json not found in main folder');
-                return response.json();
-            })
-            .then(data => {
-                repoCountEl.textContent = data.repos;
-                followerCountEl.textContent = data.followers;
-                accountAgeEl.textContent = data.created;
-
-                if (updateTimeEl) {
-                    updateTimeEl.textContent = data.last_updated;
-                }
-                console.log("✅ Sync successful from Main Folder!");
-            })
-            .catch(error => {
-                console.warn('Path error: Ensure data.json is in the root.', error);
-            });
-    }
 
 });

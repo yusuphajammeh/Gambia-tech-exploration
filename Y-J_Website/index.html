@@ -4,132 +4,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusupha Jammeh | Developer & Designer</title>
-    <meta name="description" content="Portfolio of Yusupha Jammeh — student developer exploring full-stack, automation, and design from The Gambia.">
-    <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
+    <title>Yusupha Jammeh | Aspiring Python Developer</title>
+    <meta name="description"
+        content="Yusupha Jammeh — aspiring developer learning Python, automation, and web technologies. Documenting my journey.">
+
+    <!-- Google Fonts: Outfit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome for Icons -->
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <!-- Scroll Skip -->
+    <a href="#main-content"
+        style="position:absolute; left:-9999px; top:auto; color:var(--accent-cyan); background:#000; padding:10px; z-index:9999;">Skip
+        to Content</a>
 
     <!-- Navigation -->
-    <nav id="navbar" aria-label="Primary">
-        <div class="container nav-container">
-            <a href="#hero" class="logo">
-                <img src="static/images/logo.png" alt="YJ Logo" width="75" height="75">
+    <header class="site-header">
+        <nav class="nav-glass">
+            <a href="#hero" class="logo"
+                style="font-weight:800; font-size:1.2rem; display:flex; align-items:center; gap:8px;">
+                <span class="text-gradient">YJ_PORTFOLIO</span>
             </a>
+
             <div class="nav-links">
-                <a href="#hero">Home</a>
-                <a href="#projects">Work</a>
+                <a href="#hero">Overview</a>
+                <a href="#work">Selected Work</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
-            <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation" aria-expanded="false">
-                <i class="fas fa-bars" aria-hidden="true"></i>
+
+            <button class="mobile-toggle" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
             </button>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <main id="main-content">
+
         <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <p class="status-code"><code>200 OK // CONNECTION ESTABLISHED</code></p>
-                <h1>YUSUPHA JAMMEH</h1>
-                <h2 class="typing-text">Full-Stack Tech Explorer</h2>
+        <section id="hero" class="hero">
+            <div class="container hero-grid">
 
-                <div class="hero-meta">
-                    <span>📍 Serekunda, KMC, The Gambia</span>
-                    <span>🎓 Kotu Senior Secondary School</span>
-                    <span class="badge">GitHub Student Developer // 2025–2027</span>
+                <div class="hero-content">
+                    <div class="status-badge fade-in-up">
+                        <span class="pulse-dot"></span>
+                        <span class="mono-text">CODING EVERY DAY // PYTHON</span>
+                    </div>
+
+                    <h1 class="fade-in-up">My Journey into <br> <span class="text-gradient">Code & Automation</span>
+                    </h1>
+                    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 500px;"
+                        class="fade-in-up">
+                        Aspiring Python developer with a passion for automation and a solid technical background.
+                        Documenting my journey into full-stack engineering.
+                    </p>
+
+                    <div class="cta-group fade-in-up" style="display:flex; gap:16px; flex-wrap:wrap;">
+                        <a href="#work" class="btn btn-primary">View Projects</a>
+                        <a href="https://github.com/YusuphaJammeh" target="_blank" class="btn btn-secondary"><i
+                                class="fab fa-github" style="margin-right:8px;"></i> GitHub</a>
+                    </div>
                 </div>
 
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn-primary">View Exploration</a>
-                    <a href="#contact" class="btn-secondary">Get In Touch</a>
-                </div>
-            </div>
-            <div class="scroll-down">
-                <i class="fas fa-chevron-down"></i>
-            </div>
-        </section>
+                <!-- Command Center / Stats Card -->
+                <div class="glass-panel hero-stats-card fade-in-up">
+                    <div style="position:absolute; top:20px; right:20px; font-size:0.8rem; color:var(--text-muted);">
+                        <i class="fas fa-wifi"></i> LIVE SYNC
+                    </div>
 
-        <section id="stats-dashboard" class="stats-container">
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <span class="stat-icon">📦</span>
-                    <div class="stat-info">
-                        <span id="repo-count" class="stat-value">3</span>
+                    <div class="stat-item">
+                        <span id="repo-count" class="stat-number text-gradient">--</span>
                         <span class="stat-label">Repositories</span>
                     </div>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-icon">👥</span>
-                    <div class="stat-info">
-                        <span id="follower-count" class="stat-value">0</span>
+
+                    <div class="stat-item">
+                        <span id="follower-count" class="stat-number">--</span>
                         <span class="stat-label">Followers</span>
                     </div>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-icon">⏳</span>
-                    <div class="stat-info">
-                        <span id="account-age" class="stat-value">1 Year Ago</span>
-                        <span class="stat-label">Dev Experience</span>
+
+                    <div class="stat-item">
+                        <span id="account-age" class="stat-number"
+                            style="font-size:1.5rem; color:var(--text-secondary);">2+ Years</span>
+                        <span class="stat-label">Experience</span>
+                    </div>
+
+                    <div style="margin-top:40px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
+                        <span id="update-time" class="mono-text"
+                            style="font-size:0.75rem; color:var(--text-muted);">Waiting for signal...</span>
                     </div>
                 </div>
-                <div class="stat-box sync-status">
-                    <span class="stat-icon pulse">📡</span>
-                    <div class="stat-info">
-                        <span id="update-time" class="stat-value small-text">Loading...</span>
-                        <span class="stat-label">Last Sync [GMT]</span>
-                    </div>
-                </div>
+
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
+        <!-- Selected Work (Bento Grid) -->
+        <section id="work">
             <div class="container">
-                <h2>Selected Works</h2>
-                <div class="section-grid">
+                <div class="section-header fade-in-up">
+                    <span class="mono-text" style="color:var(--accent-pink);">// LEARNING PROJECTS</span>
+                    <h2>Building in Public</h2>
+                </div>
 
-                    <!-- Project 1 -->
-                    <div class="glass-panel project-card">
-                        <h3>Profoliu Website</h3>
-                        <p class="project-tags">
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">Design</span>
-                        </p>
-                        <p>My personal premium portfolio website showcasing my journey and skills.</p>
-                    </div>
+                <div class="bento-grid">
 
-                    <!-- Project 2 (Placeholder) -->
-                    <div class="glass-panel project-card">
-                        <h3>E-Commerce Dashboard</h3>
-                        <p class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                        </p>
-                        <p>A modern dashboard for managing digital stores with real-time analytics.</p>
-                    </div>
-
-                    <!-- Project 3 (Placeholder) -->
-                    <div class="glass-panel project-card">
-                        <h3>AI Image Gen</h3>
-                        <p class="project-tags">
+                    <!-- Highlight Project 1 -->
+                    <div class="glass-panel bento-item large fade-in-up">
+                        <div>
+                            <div style="margin-bottom:16px;">
+                                <i class="fas fa-heartbeat" style="font-size:2rem; color:var(--accent-pink);"></i>
+                            </div>
+                            <h3>Heartbeat Automation Engine</h3>
+                            <p style="color:var(--text-secondary); margin: 16px 0;">
+                                A serverless monitoring solution providing 100% live GitHub stats without paid hosting.
+                                Built with Python stdlib and GitHub Actions.
+                            </p>
+                        </div>
+                        <div class="bento-tags">
                             <span class="tag">Python</span>
-                            <span class="tag">AI</span>
-                        </p>
-                        <p>An experimental AI tool creating automated artistic assets.</p>
+                            <span class="tag">GitHub Actions</span>
+                            <span class="tag">API Security</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="glass-panel bento-item fade-in-up">
+                        <div>
+                            <div style="margin-bottom:16px;">
+                                <i class="fas fa-terminal" style="font-size:2rem; color:var(--text-primary);"></i>
+                            </div>
+                            <h3>YJ_Logger CLI</h3>
+                            <p style="color:var(--text-secondary); margin: 16px 0;">
+                                ASCII-based professional logging system for terminal clarity.
+                            </p>
+                        </div>
+                        <div class="bento-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">CLI UX</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="glass-panel bento-item fade-in-up">
+                        <div>
+                            <div style="margin-bottom:16px;">
+                                <i class="fas fa-globe-africa" style="font-size:2rem; color:var(--accent-cyan);"></i>
+                            </div>
+                            <h3>Gambia Tech Exploration</h3>
+                            <p style="color:var(--text-secondary); margin: 16px 0;">
+                                Centralized knowledge base mapping local tech gaps and opportunities.
+                            </p>
+                        </div>
+                        <div class="bento-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Open Data</span>
+                        </div>
+                    </div>
+
+                    <!-- Frontend Skill Card -->
+                    <div class="glass-panel bento-item fade-in-up">
+                        <div>
+                            <h3>Frontend Learning</h3>
+                            <p style="color:var(--text-secondary); margin: 16px 0;">
+                                learning responsive design, semantic HTML, and modern CSS practices.
+                            </p>
+                        </div>
+                        <div class="bento-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Glassmorphism</span>
+                            <span class="tag">Performance</span>
+                        </div>
                     </div>
 
                 </div>
@@ -137,177 +191,92 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about-section">
+        <section id="about" style="position:relative; overflow:hidden;">
+            <!-- Background Decoration -->
+            <div
+                style="position:absolute; top:20%; right:-10%; width:500px; height:500px; background:radial-gradient(circle, rgba(188,19,254,0.1), transparent 70%); pointer-events:none;">
+            </div>
+
             <div class="container">
-                <h2 class="section-title">THE EXPLORATION STORY</h2>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>
-                            I am a self-driven developer based in <strong>Serekunda, The Gambia</strong>,
-                            currently a student at <strong>Kotu Senior Secondary School</strong>.
-                            My journey into technology is fueled by a mission to explore and master the tools that power the
-                            modern web.
+                <div class="hero-grid" style="align-items:start;">
+                    <div class="fade-in-up">
+                        <span class="mono-text" style="color:var(--accent-cyan);">// ABOUT ME</span>
+                        <h2 style="margin-bottom:30px;">Learning, Breaking,<br> Fixing.</h2>
+                        <p style="color:var(--text-secondary); margin-bottom:20px;">
+                            I'm a technical problem-solver transitioning into software development. I leverage a strong
+                            foundation in IT operations to build reliable, efficient scripts and systems.
                         </p>
-                        <p>
-                            I don't just build websites; I build systems. My recent "72-hour sprint" saw me successfully
-                            navigate the <strong>GitHub Student Developer</strong> verification process,
-                            integrate real-time <strong>GitHub APIs</strong>, and master the complexities of
-                            <strong>Version Control</strong>.
+                        <p style="color:var(--text-secondary);">
+                            "Efficiency is my goal. I'm learning to write code that solves real problems, one script at
+                            a time."
                         </p>
-                        <blockquote>
-                            "I see every terminal error as a milestone and every merge conflict as a lesson in persistence."
-                        </blockquote>
                     </div>
 
-                    <div class="about-skills">
-                        <h3>Core Arsenal</h3>
-                        <ul class="skill-list">
-                            <li><strong>Backend:</strong> Python, API Integration, Environment Security (.env)</li>
-                            <li><strong>Frontend:</strong> Glassmorphism CSS, JavaScript, Dynamic JSON Bridges</li>
-                            <li><strong>DevOps:</strong> Git Bash, Branch Management, Vim Navigation</li>
+                    <!-- Skills / Toolkit -->
+                    <div class="glass-panel" style="padding:40px; margin-top:20px;">
+                        <h4 style="margin-bottom:24px;">Current Learning Stack</h4>
+                        <ul style="display:grid; gap:16px;">
+                            <li
+                                style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;">
+                                <span>Languages</span>
+                                <span style="color:var(--text-secondary);">Python (Main Focus), HTML/CSS</span>
+                            </li>
+                            <li
+                                style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;">
+                                <span>Core Skills</span>
+                                <span style="color:var(--text-secondary);">Troubleshooting, System Admin</span>
+                            </li>
+                            <li
+                                style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px;">
+                                <span>Tools</span>
+                                <span style="color:var(--text-secondary);">VS Code, Git, Terminal</span>
+                            </li>
+                            <li style="display:flex; justify-content:space-between;">
+                                <span>Goals</span>
+                                <span style="color:var(--text-secondary);">Automation, Full-Stack</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="logbook" class="log-section">
+        <!-- Contact / Footer -->
+        <footer id="contact" class="site-footer">
             <div class="container">
-                <h2 class="section-title">SYSTEM_LOG.exe</h2>
-                <div class="win-terminal">
-                    <div class="win-terminal-header">
-                        <div class="win-terminal-title">
-                            <span class="terminal-icon">🪟</span> Windows PowerShell
-                        </div>
-                        <div class="win-controls">
-                            <span class="win-btn">─</span>
-                            <span class="win-btn">▢</span>
-                            <span class="win-btn close">✕</span>
-                        </div>
-                    </div>
-                    <div class="win-terminal-body">
-                        <p class="ps-header">Windows PowerShell<br>Copyright (C) Microsoft Corporation. All rights reserved.
+                <div class="footer-grid">
+                    <div>
+                        <a href="#" class="footer-logo text-gradient">YUSUPHA JAMMEH</a>
+                        <p style="color:var(--text-secondary); max-width:300px;">
+                            Documenting my journey to becoming a full-stack developer.
                         </p>
+                    </div>
 
-                        <div class="log-entry">
-                            <span class="ps-prompt">PS C:\Users\Yusupha\Gambia-Tech-Exploration></span> git commit -m
-                            "Verified Student Pack"
-                            <br><span class="log-msg"> >> Status: Academic status confirmed [2025-2027].</span>
-                        </div>
+                    <div class="footer-links">
+                        <h4>Navigation</h4>
+                        <a href="#hero">Overview</a>
+                        <a href="#work">Work</a>
+                        <a href="#about">About</a>
+                    </div>
 
-                        <div class="log-entry">
-                            <span class="ps-prompt">PS C:\Users\Yusupha\Gambia-Tech-Exploration></span> python
-                            github_profile.py
-                            <br><span class="log-msg"> >> Resolution: Bypassed OneDrive virtualization via absolute
-                                pathing.</span>
-                            <br><span class="log-msg"> >> Milestone: Python API data bridged to HTML Dashboard.</span>
-                        </div>
-
-                        <div class="log-entry">
-                            <span class="ps-prompt">PS C:\Users\Yusupha\Gambia-Tech-Exploration></span> git merge
-                            experiment--A
-                            <br><span class="log-msg"> >> Success: Overcame Vim swap file (.swp) and MERGE_HEAD
-                                blockages.</span>
-                        </div>
-
-                        <div class="ps-prompt-line">
-                            <span class="ps-prompt">PS C:\Users\Yusupha\Gambia-Tech-Exploration></span><span
-                                class="win-cursor"></span>
-                        </div>
+                    <div class="footer-links">
+                        <h4>Connect</h4>
+                        <a href="https://github.com/YusuphaJammeh" target="_blank">GitHub</a>
+                        <a href="mailto:yusuphajammeh13122003@outlook.com">Email</a>
+                        <a href="#">LinkedIn</a>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="active-explorations" class="projects-section">
-            <div class="container">
-                <h2 class="section-title">ACTIVE <span>EXPLORATIONS</span></h2>
-                <div class="project-featured">
-                    <div class="project-content">
-                        <span class="repo-status">PUBLIC REPOSITORY</span>
-                        <h3>Gambia-tech-exploration</h3>
-                        <p>
-                            My flagship project focused on mastering the GitHub ecosystem.
-                            This repository serves as the central hub for my Python automation scripts,
-                            API integrations, and the very website you are viewing now.
-                        </p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>GitHub API</span>
-                            <span>Version Control</span>
-                            <span>Automation</span>
-                        </div>
-                        <a href="https://github.com/YusuphaJammeh/Gambia-tech-exploration" target="_blank"
-                            class="repo-link">
-                            Explore Code on GitHub ↗
-                        </a>
-                    </div>
-                    <div class="project-stats-preview">
-                        <div class="mini-stat">
-                            <span class="label">Branch</span>
-                            <span class="value">main</span>
-                        </div>
-                        <div class="mini-stat">
-                            <span class="label">Environment</span>
-                            <span class="value">Windows / Git Bash</span>
-                        </div>
-                    </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Yusupha Jammeh. Crafted with <span style="color:var(--accent-pink);">♥</span> and
+                        Python.</p>
                 </div>
             </div>
-        </section>
-        <section id="credentials" class="credentials-section">
-            <div class="container">
-                <div class="badge-card">
-                    <div class="badge-header">
-                        <span class="verification-tag">VERIFIED ACADEMIC STATUS</span>
-                    </div>
-                    <div class="badge-body">
-                        <div class="school-info">
-                            <h3>Kotu Senior Secondary School</h3>
-                            <p>Student Developer Program // Serekunda, KMC</p>
-                        </div>
-                        <div class="github-badge-logo">
-                            <div class="student-seal">
-                                <span class="seal-text">GITHUB STUDENT</span>
-                                <span class="seal-year">2025 - 2027</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="badge-footer">
-                        <p>Status: 🟢 Active Provisional Window [72h Syncing...]</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </footer>
+
     </main>
 
-    <!-- Contact / Footer -->
-    <footer class="site-footer" id="contact">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <p class="footer-logo">YJ_PORTFOLIO</p>
-                <p>Exploring Tech from Serekunda, KMC.</p>
-            </div>
-            <div class="footer-links">
-                <h4>EXPLORATION LINKS</h4>
-                <a href="https://github.com/YusuphaJammeh" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="#active-explorations">Repositories</a>
-                <a href="mailto:your-email@example.com">Contact Developer</a>
-            </div>
-            <div class="footer-status">
-                <h4>SYSTEM STATUS</h4>
-                <p>Verified Student: 2025 – 2027</p>
-                <p>Location: The Gambia (GMT)</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Yusupha Jammeh. Built with Python & persistence.</p>
-        </div>
-    </footer>
-
     <script src="script.js" defer></script>
-
 </body>
 
 </html>
-
